@@ -25,7 +25,7 @@
                   <table>
                       <tr>
                           <td><img src="/CarrierPigeon/img/logo.jpg" alt='logo'/></td>
-                          <td><h1><a href="index.html">Carrier Pigeon</a></h1></td>
+                          <td><h1><a href="index.jsp">Carrier Pigeon</a></h1></td>
                           <td><h4><a href="#trackingModal">New Package</a></h4></td>
                       </tr>
                   </table>
