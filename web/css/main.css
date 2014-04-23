@@ -96,12 +96,12 @@ body {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: rgba(0,0,0,0.8);
+	background: rgba(255,255,255,0.5);
 	z-index: 99999;
 	opacity:0;
-	-webkit-transition: opacity 400ms ease-in;
-	-moz-transition: opacity 400ms ease-in;
-	transition: opacity 400ms ease-in;
+	-webkit-transition: opacity 100ms ease-in;
+	-moz-transition: opacity 100ms ease-in;
+	transition: opacity 100ms ease-in;
 	pointer-events: none;
 }
 
@@ -111,15 +111,16 @@ body {
 }
 
 .modalDialog > div {
-	width: 400px;
+	width: 300px;
 	position: relative;
 	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
 	border-radius: 10px;
-	background: #fff;
-	background: -moz-linear-gradient(#fff, #999);
-	background: -webkit-linear-gradient(#fff, #999);
-	background: -o-linear-gradient(#fff, #999);
+        border: 1px #000 solid; 
+	background: #FFFFFF;
+	background: -moz-linear-gradient(#FFFFFF, #EEEEEE);
+	background: -webkit-linear-gradient(#FFFFFF, #EEEEEE);
+	background: -o-linear-gradient(#FFFFFF, #EEEEEE);
 }
 
 .close {
@@ -142,3 +143,7 @@ body {
 }
 
 .close:hover { background: #00d9ff; }
+
+#track_package_button {
+    margin: 0 115px;
+}
