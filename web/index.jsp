@@ -5,7 +5,6 @@
      <title>Carrier Pigeon</title>
      <link rel="stylesheet" type="text/css" href="/CarrierPigeon/css/main.css" />
      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-     <script type="text/javascript" src="/CarrierPigeon/js/vendor/jquery-1.11.0.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -26,7 +25,7 @@
                   <table>
                       <tr>
                           <td><img src="/CarrierPigeon/img/logo.jpg" alt='logo'/></td>
-                          <td><h1><a href="index.html">Carrier Pigeon</a></h1></td>
+                          <td><h1><a href="index.jsp">Carrier Pigeon</a></h1></td>
                           <td><h4><a href="#trackingModal">New Package</a></h4></td>
                       </tr>
                   </table>
@@ -41,11 +40,12 @@
                   <div>
                       <a href="#close" title="Close" class="close">X</a>
                       <h2>Enter Package Information</h2>
-                      <form id="newPackageForm">
+                      <form action="">
                           <table>
                               <tr>
                                   <td>Carrier:</td>
                                   <td><select name="carrier">
+                                    <option value="default"></option>
                                     <option value="FedEx">FedEx</option>
                                     <option value="UPS">UPS</option>
                                     <option value="USPS">USPS</option>
