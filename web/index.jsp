@@ -35,6 +35,35 @@
                   <div id='inner_content'>
                       <p>Carrier pigeon is a composition of Web Services created to make the tracking of multiple packages easier.
                       To begin tracking a package, select the "New Package" heading at the top of the page.</p>
+                      <div>
+                          <h3>Current Packages</h3>
+                          <table id="table">
+                              <thead>
+                                  <tr>
+                                      <th scope="col">Tracking Number</th>
+                                      <th scope="col">Carrier</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                    <tr>
+                                        <td>
+                                            Package 1
+                                        </td>
+                                        <td>
+                                            Info 1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Package 2
+                                        </td>
+                                        <td>
+                                            Info 2
+                                        </td>
+                                    </tr>
+                              </tbody>
+                          </table>
+                      </div>
                   </div>
               </div>
               <!--
