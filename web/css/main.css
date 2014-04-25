@@ -89,6 +89,7 @@ body {
      text-decoration: none;
  }
 
+ /*
 .modalDialog {
 	position: fixed;
 	font-family: Times, Helvetica, sans-serif;
@@ -143,7 +144,8 @@ body {
 }
 
 .close:hover { background: #00d9ff; }
-
-#track_package_button {
+*/
+#submit_button {
+    padding: 0 0 25px;
     margin: 0 115px;
 }

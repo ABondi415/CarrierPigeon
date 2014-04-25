@@ -26,23 +26,13 @@
                       <tr>
                           <td><img src="/CarrierPigeon/img/logo.jpg" alt='logo'/></td>
                           <td><h1><a href="index.jsp">Carrier Pigeon</a></h1></td>
-                          <!--<td><h4><a href="#trackingModal">New Package</a></h4></td>-->
-                          <td><h4><a href="NewPackage.jsp">New Package</a></h4></td>
                       </tr>
                   </table>
               </div>
               <div id='main_content'>
                   <div id='inner_content'>
-                      <p>Carrier pigeon is a composition of Web Services created to make the tracking of multiple packages easier.
-                      To begin tracking a package, select the "New Package" heading at the top of the page.</p>
-                  </div>
-              </div>
-              <!--
-              <div id="trackingModal" class="modalDialog">
-                  <div>
-                      <a href="#close" title="Close" class="close">X</a>
                       <h2>Enter Package Information</h2>
-                      <form action="">
+                      <form action="NewPackageResult.jsp" method="POST">
                           <table>
                               <tr>
                                   <td>Carrier:</td>
@@ -59,14 +49,14 @@
                                   <td><input type="text" name="Tracking Number"/></td>
                               </tr>
                           </table>
-                          <div id="track_package_button">
+                          <div id="submit_button">
                           <br/>
                               <input type="submit" value="Track" />
+                          <br/>
                           </div>
                       </form>
                   </div>
               </div>
-              -->
           </div>
      </div>
      <div id="footer">
