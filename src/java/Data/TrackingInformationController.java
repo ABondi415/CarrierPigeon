@@ -27,10 +27,11 @@ public class TrackingInformationController extends Controller {
         PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         
         statement.setInt(1, info.getUserId());
-        statement.setString(2, info.getCarrier().toString());
+        statement.setString(2, (info.getCarrier() != null ? info.getCarrier().toString() : ""));
         statement.setString(3, info.getTrackingNumber());
         statement.setString(4, info.getDestZipCode());
-        statement.setDate(5, new java.sql.Date(info.getMailingDate().getTime()));
+        long mailingDateSeconds = info.getMailingDate() != null ? info.getMailingDate().getTime() : 0;
+        statement.setDate(5, new java.sql.Date(mailingDateSeconds));
         
         statement.executeUpdate();
         ResultSet rs = statement.getGeneratedKeys();
@@ -110,8 +111,23 @@ public class TrackingInformationController extends Controller {
         return result;
     }
     
-    public void UpdateTrackingInformation(TrackingInformation ti) {
-        throw new UnsupportedOperationException();
+    public void updateTrackingInformation(TrackingInformation ti) throws SQLException {
+        Connection conn = getConnection();
+        String sql = "update trackinginformation set UserId = ?, Carrier = ?,"
+                + "TrackingNumber = ?, DestZipCode = ?, MailingDate = ? where Id = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        
+        if (ti.getId() == 0)
+            throw new RuntimeException("Cannot update when Id is 0.");
+        
+        statement.setInt(1, ti.getUserId());
+        statement.setString(2, (ti.getCarrier() != null ? ti.getCarrier().toString() : ""));
+        statement.setString(3, ti.getTrackingNumber());
+        statement.setString(4, ti.getDestZipCode());
+        long mailingDateSeconds = ti.getMailingDate() != null ? ti.getMailingDate().getTime() : 0;
+        statement.setDate(5, new java.sql.Date(mailingDateSeconds));
+        statement.setInt(6, ti.getId());
+        statement.execute();
     }
     
     private TrackingInformation getFromResultSet(ResultSet rs) throws SQLException {
@@ -119,7 +135,9 @@ public class TrackingInformationController extends Controller {
         
         info.setId(rs.getInt(1));
         info.setUserId(rs.getInt(2));
-        info.setCarrier(CarrierType.valueOf(rs.getString(3)));
+        
+        CarrierType carrier = rs.getString(3).length() != 0 ? CarrierType.valueOf(rs.getString(3)) : null;
+        info.setCarrier(carrier);
         info.setTrackingNumber(rs.getString(4));
         info.setDestZipCode(rs.getString(5));
         info.setMailingDate(rs.getDate(6));

@@ -30,6 +30,7 @@ public class TrackingStatusControllerTest {
     private static TrackingInformationController trackingInfoController;
     private static int testUserId;
     private static int testTrackingInfoId;
+    private static int testTrackingInfoId2;
     
     public TrackingStatusControllerTest() {
     }
@@ -54,11 +55,20 @@ public class TrackingStatusControllerTest {
         info.setMailingDate(new Date());
         trackingInfoController.insertTrackingInfo(info);
         testTrackingInfoId = info.getId();
+        
+        info.setUserId(testUserId);
+        info.setCarrier(CarrierType.UPS);
+        info.setTrackingNumber("123450");
+        info.setDestZipCode("165010");
+        info.setMailingDate(new Date());
+        trackingInfoController.insertTrackingInfo(info);
+        testTrackingInfoId2 = info.getId();
     }
     
     @AfterClass
     public static void tearDownClass() throws SQLException {
         trackingInfoController.deleteTrackingInfo(testTrackingInfoId);
+        trackingInfoController.deleteTrackingInfo(testTrackingInfoId2);
         userController.deleteUser(testUserId);
     }
     
@@ -150,5 +160,37 @@ public class TrackingStatusControllerTest {
         // Clean up after test
         uut.deleteTrackingStatus(status.getId());
         uut.deleteTrackingStatus(status2.getId());
+    }
+    
+    @Test
+    public void UpdateTrackingStatus() throws SQLException {
+        // Insert tracking status
+        TrackingStatus status = new TrackingStatus();
+        status.setTrackingInformationId(testTrackingInfoId);
+        uut.insertTrackingStatus(status);
+        
+        // Change values
+        String city = "testCity";
+        Date statusDate = new Date();
+        String state = "testState";
+        int informationId = testTrackingInfoId;
+        
+        status.setStatusCity(city);
+        status.setStatusDate(statusDate);
+        status.setStatusState(state);
+        status.setTrackingInformationId(informationId);
+        uut.updateTrackingStatus(status);
+        
+        // Get updated object
+        TrackingStatus result = uut.getTrackingStatus(status.getId());
+        
+        // Verify that values changed
+        assertThat(result.getStatusCity(), is(city));
+        assertThat(result.getStatusDate(), is(statusDate));
+        assertThat(result.getStatusState(), is(state));
+        assertThat(result.getTrackingInformationId(), is(informationId));
+        
+        // Clean up from test
+        uut.deleteTrackingStatus(status.getId());
     }
 }

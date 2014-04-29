@@ -25,7 +25,8 @@ public class TrackingStatusController extends Controller {
         String sql = "insert into TrackingStatus (StatusDate, StatusCity, StatusState, TrackingInformationId) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         
-        statement.setTimestamp(1, new java.sql.Timestamp(status.getStatusDate().getTime()));
+        long statusTime = status.getStatusDate() != null ? status.getStatusDate().getTime() : 0;
+        statement.setTimestamp(1, new java.sql.Timestamp(statusTime));
         statement.setString(2, status.getStatusCity());
         statement.setString(3, status.getStatusState());
         statement.setInt(4, status.getTrackingInformationId());
@@ -94,8 +95,18 @@ public class TrackingStatusController extends Controller {
         return result;
     }
     
-    public void UpdateTrackingStatus(TrackingStatus ts) {
-        throw new UnsupportedOperationException();
+    public void updateTrackingStatus(TrackingStatus ts) throws SQLException {
+        Connection conn = getConnection();
+        String sql = "update TrackingStatus set StatusDate = ?, StatusCity = ?, StatusState = ?, TrackingInformationId = ? where Id = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        
+        long statusTime = ts.getStatusDate() != null ? ts.getStatusDate().getTime() : 0;
+        statement.setTimestamp(1, new java.sql.Timestamp(statusTime));
+        statement.setString(2, ts.getStatusCity());
+        statement.setString(3, ts.getStatusState());
+        statement.setInt(4, ts.getTrackingInformationId());
+        statement.setInt(5, ts.getId());
+        statement.execute();
     }
     
     private TrackingStatus getFromResultSet(ResultSet rs) throws SQLException {

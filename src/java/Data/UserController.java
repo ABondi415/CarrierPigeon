@@ -83,7 +83,15 @@ public class UserController extends Controller {
         return result;
     }
     
-    public void UpdateUser(User u) {
-        throw new UnsupportedOperationException();
+    public void updateUser(User u) throws SQLException {
+        Connection conn = getConnection();
+        String sql = "update LoginUser set Email = ?, Username = ?, Password = ? where Id = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        
+        statement.setString(1, u.getEmail());
+        statement.setString(2, u.getUsername());
+        statement.setString(3, u.getPassword());
+        statement.setInt(4, u.getId());
+        statement.execute();
     }
 }

@@ -29,6 +29,7 @@ public class TrackingInformationControllerTests {
     private static TrackingInformationController uut;
     private static UserController userController;
     private static int testUserId;
+    private static int testUserId2;
 
     public TrackingInformationControllerTests() {
     }
@@ -43,11 +44,17 @@ public class TrackingInformationControllerTests {
         u.setPassword("testPassword");
         userController.insertUser(u);
         testUserId = u.getId();
+        
+        u.setUsername("testUser2");
+        u.setPassword("testPassword2");
+        userController.insertUser(u);
+        testUserId2 = u.getId();
     }
 
     @AfterClass
     public static void tearDownClass() throws SQLException {
         userController.deleteUser(testUserId);
+        userController.deleteUser(testUserId2);
     }
 
     @Before
@@ -183,5 +190,40 @@ public class TrackingInformationControllerTests {
         // Clean up after test
         uut.deleteTrackingInfo(info.getId());
         uut.deleteTrackingInfo(info2.getId());
+    }
+    
+    @Test
+    public void UpdateTrackingInformation() throws SQLException {
+        // Insert tracking information
+        TrackingInformation info = new TrackingInformation();
+        info.setUserId(testUserId);
+        uut.insertTrackingInfo(info);
+        
+        // Change values
+        int userId = testUserId2;
+        CarrierType carrier = CarrierType.FedEx;
+        String trackingNumber = "9876";
+        String destZipCode = "12345";
+        Date mailingDate = new Date();
+        
+        info.setUserId(userId);
+        info.setCarrier(carrier);
+        info.setTrackingNumber(trackingNumber);
+        info.setDestZipCode(destZipCode);
+        info.setMailingDate(mailingDate);
+        uut.updateTrackingInformation(info);
+        
+        // Get updated object
+        TrackingInformation result = uut.getTrackingInfo(info.getId());
+        
+        // Verify that values changed
+        assertThat(result.getUserId(), is(userId));
+        assertThat(result.getCarrier(), is(carrier));
+        assertThat(result.getTrackingNumber(), is(trackingNumber));
+        assertThat(result.getDestZipCode(), is(destZipCode));
+        assertThat(result.getMailingDate().getDay(), is(mailingDate.getDay()));
+        
+        // Clean up from test
+        uut.deleteTrackingInfo(info.getId());
     }
 }
