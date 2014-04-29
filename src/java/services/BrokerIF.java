@@ -1,6 +1,7 @@
 package services;
 
-import trackinginformation.TrackingInformation;
+import Data.TrackingInformation;
+
 
 /**
  *
