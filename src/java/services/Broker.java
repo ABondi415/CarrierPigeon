@@ -68,7 +68,10 @@ public class Broker implements BrokerIF {
             
             default:
                 // Do something here -- Should never happen.
+                break;
+           
         }
+        
     }
     
     
