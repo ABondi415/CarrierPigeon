@@ -162,7 +162,7 @@ public class TrackWebServiceREST implements Provider<Source> {
 		} 
 	
         
-        String xml = xml_start + "POSTed: " + s+ xml_stop;
+        String xml = xml_start + s+ xml_stop;
         return make_stream_source(xml);
     }
     
@@ -196,9 +196,10 @@ public class TrackWebServiceREST implements Provider<Source> {
                 //get the addess of the last event
                 Address a = event.getAddress();
                 String city = a.getCity();
+                String zip = a.getPostalCode();
                 String state = a.getStateOrProvinceCode();
                 
-                trackingData= trackingData+"~"+date+","+j+","+city+","+state;
+                trackingData= trackingData+"~"+date+","+city+","+state+","+zip;
             }
         }
         

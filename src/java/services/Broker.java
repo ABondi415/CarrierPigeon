@@ -7,13 +7,20 @@
 package services;
 
 import Data.TrackingInformation;
+import Data.TrackingStatus;
+import Data.TrackingStatusController;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import services.fedEx.service.client.FedExServiceCaller;
 
 /**
  *
  * @author A9712
  */
 public class Broker implements BrokerIF {
-    
+    TrackingStatusController tsc = new TrackingStatusController();
     /**
      * Make web service calls here.
      * @param information 
@@ -23,7 +30,23 @@ public class Broker implements BrokerIF {
     public void route(TrackingInformation information) {
         switch (information.getCarrier()){
             case FedEx:
+                //make sure the class "TrackWebPublisher" in the "src.services.fedex.service.endpoint" 
+                //package is running to communicate with the FedEx web service
                 
+                FedExServiceCaller fsc = new FedExServiceCaller(information.getTrackingNumber());
+                fsc.setup_and_test();
+                //call the FedEx tracking web service and fill an ArrayList of the tracking statuses
+                
+                ArrayList<TrackingStatus> al_ts = fsc.getTrackingStatus();
+                //get all the tracking statuses
+                
+                for(TrackingStatus ts : al_ts){
+                    try {
+                        tsc.insertTrackingStatus(ts);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Broker.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                 // Call FedEx service
                 break;
                 
