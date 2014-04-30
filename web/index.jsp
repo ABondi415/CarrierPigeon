@@ -34,8 +34,9 @@
             </div>
             <div id="content">
                 <div class="inner">
-                    <p>Carrier pigeon is a composition of Web Services created to make the tracking of multiple packages easier.
-                        To begin tracking a package, select the "New Package" heading at the top of the page.</p>
+                    <h3>Welcome to Carrier Pigeon!</h3>
+                    <p>The <b>New Package</b> tab can be utilized to begin tracking a new package.</p>
+                    <p>Use the <b>View Packages</b> tab to view all currently tracked packages and their associated tracking statuses.</p>
                 </div>
             </div>
             <div id="footer">

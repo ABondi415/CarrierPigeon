@@ -17,11 +17,12 @@
                                 <img src="/CarrierPigeon/img/logo.jpg" alt='logo'/>
                             </td>
                             <td>
-                                <h1><a href="Login.jsp">Carrier Pigeon</a></h1>
+                                <h1><a href="index.jsp">Carrier Pigeon</a></h1>
                             </td>
                             <td>
                                 <nav>
                                     <ul id="menu">
+                                        <li><a href="index.jsp">Home</a></li>
                                         <li><a href="ViewPackages.jsp">View Packages</a></li>
                                         <li><a href="Logout.jsp">Logout</a></li>
                                     </ul>

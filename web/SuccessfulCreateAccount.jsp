@@ -15,28 +15,22 @@
                         <tr>
                             <td>
                                 <img src="/CarrierPigeon/img/logo.jpg" alt='logo'/>
-
                             </td>
                             <td>
-                                <h1><a href="index.jsp">Carrier Pigeon</a></h1>
-                            </td>
-                            <td>
-                                <nav>
-                                    <ul id="menu">
-                                        <li><a href="index.jsp">Home</a></li>
-                                        <li><a href="NewPackage.jsp">New Package</a></li>
-                                        <li><a href="Logout.jsp">Logout</a></li>
-                                    </ul>
-                                </nav>
+                                <h1><a href="Login.jsp">Carrier Pigeon</a></h1>
                             </td>
                         </tr>
                 </table>
             </div>
             <div id="content">
                 <div class="inner">
-                    
-                    <h2>Packages</h2>
-                    <p>View all of your packages here!</p>
+                    <div class="login">
+                        <h2>Account Creation Successful!</h2>
+                        <p>Your account has been created!  Please select Enter below to begin tracking!</p>
+                        <form action="index.jsp" method="post">
+                            <input type="submit" value="Enter" />
+                        </form>
+                    </div>
                 </div>
             </div>
             <div id="footer">
@@ -45,6 +39,6 @@
                 </div>
             </div>
         </div>
-        <script src="js/index.js"></script>
+        <script src="js/login.js"></script>
     </body>
 </html>

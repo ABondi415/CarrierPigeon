@@ -25,7 +25,7 @@
                 newUser.setEmail(request.getParameter("Email"));
                 controller.insertUser(newUser);
                 response.setStatus(response.SC_MOVED_TEMPORARILY);
-                response.setHeader("Location", "http://localhost:8080/CarrierPigeon/Login.jsp");
+                response.setHeader("Location", "http://localhost:8080/CarrierPigeon/SuccessfulCreateAccount.jsp");
             }
             else {
                 response.setStatus(response.SC_MOVED_TEMPORARILY);
