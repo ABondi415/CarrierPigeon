@@ -3,3 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+$(document).ready(function(){
+    $(":submit").click(function(){
+        $("#action").val(this.name);
+    });
+});
+
+
+

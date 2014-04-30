@@ -24,7 +24,6 @@
                                 <nav>
                                     <ul id="menu">
                                         <li><a href="NewPackage.jsp">New Package</a></li>
-                                        <li><a href="ViewPackages.jsp">View Packages</a></li>
                                         <li><a href="Logout.jsp">Logout</a></li>
                                     </ul>
                                 </nav>
@@ -34,8 +33,9 @@
             </div>
             <div id="content">
                 <div class="inner">
-                    <p>Carrier pigeon is a composition of Web Services created to make the tracking of multiple packages easier.
-                        To begin tracking a package, select the "New Package" heading at the top of the page.</p>
+                    
+                    <h2>Packages</h2>
+                    <p>View all of your packages here!</p>
                 </div>
             </div>
             <div id="footer">

@@ -1,17 +1,5 @@
-<%@page import="services.Broker"%>
-<%@page import="services.BrokerIF"%>
-<%@page import="helpers.CarrierTypeHelper"%>
-<%@page import="Data.TrackingInformation"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<%
-    String carrier = request.getParameter("carrier");
-    String trackingNumber = request.getParameter("Tracking Number");
-    TrackingInformation trackingInfo = new TrackingInformation(trackingNumber, CarrierTypeHelper.StringToCarrierType(carrier));
-    BrokerIF broker = new Broker();
-    broker.route(trackingInfo);
-%>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>Carrier Pigeon</title>
@@ -37,27 +25,26 @@
             <div id="content">
                 <div class="inner">
                     <div class="login">
-                        <h2>New Package Added!</h2>
-                        <ul>
-                            <li>
-                                <p>
-                                    <b>Package Carrier: </b>
-                                    <%= carrier%>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <b>
-                                        Tracking Number: <%= trackingNumber%>
-                                    </b>
-                                </p>
-                            </li>
-                        </ul>
-                        <div id="submit_button">
-                            <form action="index.jsp">
-                                <input type="submit" value="Done"/>
-                            </form>
-                        </div>
+                        <h2>Welcome!</h2>
+                        <p>Carrier pigeon is a composition of Web Services created to make the tracking of multiple packages easier.</p>
+                        <p>If you have an account, you may login below.  Otherwise, select <b>Create an Account</b> and begin tracking in just a few minutes!</p>
+                        <form action="CreateAccount.jsp" method="post">
+                            <input type="hidden" name="action" id="action" value=""/>
+                            <table width="50%">
+                                <tr>
+                                    <td>Username:</td>
+                                    <td><input type="text" name="Username"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Password:</td>
+                                    <td><input type="password" name="Password"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftSubmit"><input type="submit" name="Login" value="Login" /></td>
+                                    <td><input type="submit" name="CreateAccount" value="Create Account" /></td>
+                                </tr>
+                            </table>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -15,27 +15,22 @@
                         <tr>
                             <td>
                                 <img src="/CarrierPigeon/img/logo.jpg" alt='logo'/>
-
                             </td>
                             <td>
-                                <h1><a href="index.jsp">Carrier Pigeon</a></h1>
-                            </td>
-                            <td>
-                                <nav>
-                                    <ul id="menu">
-                                        <li><a href="NewPackage.jsp">New Package</a></li>
-                                        <li><a href="ViewPackages.jsp">View Packages</a></li>
-                                        <li><a href="Logout.jsp">Logout</a></li>
-                                    </ul>
-                                </nav>
+                                <h1><a href="Login.jsp">Carrier Pigeon</a></h1>
                             </td>
                         </tr>
                 </table>
             </div>
             <div id="content">
                 <div class="inner">
-                    <p>Carrier pigeon is a composition of Web Services created to make the tracking of multiple packages easier.
-                        To begin tracking a package, select the "New Package" heading at the top of the page.</p>
+                    <div class="login">
+                        <h2>Invalid Login!</h2>
+                        <p>The username and password you entered were invalid.  Please try to login again.</p>
+                        <form action="Login.jsp" method="post">
+                            <input type="submit" value="Login" />
+                        </form>
+                    </div>
                 </div>
             </div>
             <div id="footer">
@@ -44,6 +39,6 @@
                 </div>
             </div>
         </div>
-        <script src="js/index.js"></script>
+        <script src="js/login.js"></script>
     </body>
 </html>

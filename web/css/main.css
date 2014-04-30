@@ -11,13 +11,14 @@ body {
 
  #wrapper {
      text-align: left;
-     width: 1000px;
+     width: 80%;
      margin-left: auto;
      margin-right: auto;
-     padding: 0;
  }
 
  #content {
+     background-color: lightgrey;
+     border: 3px solid black;
      margin: 0 0 0 0;
  }
 
@@ -46,11 +47,11 @@ body {
      margin: 10px;
  }
  
- #title {
+ #header {
      font-family: "times", "courier", "arial"
  }
  
- #title a {
+ #header a {
      text-decoration: none;
      outline: none;
      background: none;
@@ -58,7 +59,7 @@ body {
      font-weight: bold;
  }
  
- #title a:hover {
+ #header a:hover {
      text-decoration: none;
      outline: none;
      background: none;
@@ -66,85 +67,29 @@ body {
      font-weight: bold;
  }
  
+ #header h1 {
+     margin: 0 0 0 0;
+     padding-top: 60px;
+ }
+ 
+ a:visited {
+     color: lightgray;
+ }
+ 
+ nav {
+     text-align: right;
+ }
+ 
  h4 {
      float: right;
      margin: 85px 10px 0 475px;
- }
- 
- #main_content {
-     background-color: lightblue;
-     border: 5px solid black;
- }
- 
- #inner_content {
-     margin: 0 10px 0 10px;
- }
- 
- h1 {
-     margin: 75px 10px 0 10px;
  }
  
  h4 a:hover {
      color:green;
      text-decoration: none;
  }
-
- /*
-.modalDialog {
-	position: fixed;
-	font-family: Times, Helvetica, sans-serif;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: rgba(255,255,255,0.5);
-	z-index: 99999;
-	opacity:0;
-	-webkit-transition: opacity 100ms ease-in;
-	-moz-transition: opacity 100ms ease-in;
-	transition: opacity 100ms ease-in;
-	pointer-events: none;
-}
-
-.modalDialog:target {
-	opacity:1;
-	pointer-events: auto;
-}
-
-.modalDialog > div {
-	width: 300px;
-	position: relative;
-	margin: 10% auto;
-	padding: 5px 20px 13px 20px;
-	border-radius: 10px;
-        border: 1px #000 solid; 
-	background: #FFFFFF;
-	background: -moz-linear-gradient(#FFFFFF, #EEEEEE);
-	background: -webkit-linear-gradient(#FFFFFF, #EEEEEE);
-	background: -o-linear-gradient(#FFFFFF, #EEEEEE);
-}
-
-.close {
-	background: #606061;
-	color: #FFFFFF;
-	line-height: 25px;
-	position: absolute;
-	right: -12px;
-	text-align: center;
-	top: -10px;
-	width: 24px;
-	text-decoration: none;
-	font-weight: bold;
-	-webkit-border-radius: 12px;
-	-moz-border-radius: 12px;
-	border-radius: 12px;
-	-moz-box-shadow: 1px 1px 3px #000;
-	-webkit-box-shadow: 1px 1px 3px #000;
-	box-shadow: 1px 1px 3px #000;
-}
-
-.close:hover { background: #00d9ff; }
-*/
+ 
 #submit_button {
     padding: 0 0 25px;
     margin: 0 115px;
@@ -156,6 +101,56 @@ body {
     width: 480px;
     text-align: left;
     border-collapse: collapse;
-    border: 1px solid #69c;
+    border: 1px solid black;
     margin: 20px;
+}
+
+/***** Navigation Menu *******/
+ul#menu{
+    padding: 100px 0 0 0;
+    margin: 0 0 0 0;
+    height: 40px;
+    //position: relative;
+    margin: 0;
+    text-align: right;
+}
+
+ul#menu li {
+    display: inline;
+    list-style: none;
+}
+
+ul#menu li a{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: lightgray;
+    color: black;
+    border-radius: 4px 4px 0 0;
+}
+
+ul#menu li a:hover {
+    color: black;
+    background-color: darkgray;
+    text-decoration: none;
+}
+
+ul#menu li a:active {
+    background-color: darkgray;
+    text-decoration: none;
+}
+/***** Navigation Menu *******/
+
+.login {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.login form {
+    margin-left: 25%;
+}
+
+.leftSubmit {
+    text-align: right;
 }
