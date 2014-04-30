@@ -1,3 +1,6 @@
+<%@page import="Data.TrackingInformationController"%>
+<%@page import="Data.UserController"%>
+<%@page import="java.sql.Date"%>
 <%@page import="services.Broker"%>
 <%@page import="services.BrokerIF"%>
 <%@page import="helpers.CarrierTypeHelper"%>
@@ -6,9 +9,19 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <%
+    UserController controller = new UserController();
+    TrackingInformationController tiController = new TrackingInformationController();
     String carrier = request.getParameter("carrier");
     String trackingNumber = request.getParameter("Tracking Number");
+    String zipCode = request.getParameter("DestZipCode");
+    Date mailingDate = Date.valueOf(request.getParameter("MailingDate"));
+    String username = request.getParameter("Username");
+    int userId = controller.getUserIdByName(username);
     TrackingInformation trackingInfo = new TrackingInformation(trackingNumber, CarrierTypeHelper.StringToCarrierType(carrier));
+    trackingInfo.setDestZipCode(zipCode);
+    trackingInfo.setMailingDate(mailingDate);
+    trackingInfo.setUserId(userId);
+    tiController.insertTrackingInfo(trackingInfo);
     BrokerIF broker = new Broker();
     broker.route(trackingInfo);
 %>
