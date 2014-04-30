@@ -54,6 +54,20 @@ public class UserController extends Controller {
         return user;
     }
     
+    public int getUserIdByName(String username) throws SQLException {
+        Connection conn = getConnection();
+        String sql = "select Id from LoginUser where Username = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        
+        statement.setString(1, username);
+        
+        ResultSet rs = statement.executeQuery();
+        if (!rs.next())
+            return -1;
+ 
+        return Integer.valueOf(rs.getString(1));
+    }
+    
     public void deleteUser(int id) throws SQLException {
         Connection conn = getConnection();
         String sql = "delete from LoginUser where id = ?";

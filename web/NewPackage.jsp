@@ -40,7 +40,7 @@
                             <table>
                                 <tr>
                                     <td>Carrier:</td>
-                                    <td><select name="carrier">
+                                    <td><select name="carrier" required>
                                             <option value="default"></option>
                                             <option value="FedEx">FedEx</option>
                                             <option value="UPS">UPS</option>
@@ -50,7 +50,18 @@
                                 </tr>
                                 <tr>
                                     <td>Tracking Number:</td>
-                                    <td><input type="text" name="Tracking Number"/></td>
+                                    <td><input type="text" name="TrackingNumber" required/></td>
+                                </tr>
+                                <tr>
+                                    <td>Destination Zip Code:</td>
+                                    <td><input type="text" name="DestZipCode"/>
+                                </tr>
+                                <tr>
+                                    <td>Mailing Date:</td>
+                                    <td><input type="date" name="MailingDate"/></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="hidden" name="Username"/></td>
                                 </tr>
                             </table>
                             <div id="submit_button">
