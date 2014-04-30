@@ -81,7 +81,7 @@ public class FedExServiceCaller {
         Map<String, Object> request_context = dispatch.getRequestContext();
         request_context.put(MessageContext.HTTP_REQUEST_METHOD, verb);
 
-        System.out.println("Request: " + data);
+        //System.out.println("Request: " + data);
 
         // Invoke
         StreamSource source = null;
@@ -115,12 +115,16 @@ public class FedExServiceCaller {
     
     private void generateTrackingInformation(String res)
     {
-        
+        boolean first = true;
         String[] events = res.split("~");
         for(String s: events){
+            if(first){
+                first=false;
+                continue;
+            }
             String[] eventInfo = s.split(",");
             String[] dateInfo = eventInfo[0].split("-");
-            Date date = new Date(Integer.parseInt(dateInfo[0]),Integer.parseInt(dateInfo[1]),Integer.parseInt(dateInfo[2]));
+            Date date = new Date(Integer.parseInt(dateInfo[0])-1900,Integer.parseInt(dateInfo[1]),Integer.parseInt(dateInfo[2]));
             TrackingStatus ts = new TrackingStatus(date,eventInfo[1],eventInfo[2],null);
             al_ts.add(ts);
         }

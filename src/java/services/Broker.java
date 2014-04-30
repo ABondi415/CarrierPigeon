@@ -7,6 +7,7 @@
 package services;
 
 import Data.TrackingInformation;
+import Data.TrackingInformationController;
 import Data.TrackingStatus;
 import Data.TrackingStatusController;
 import java.sql.SQLException;
@@ -21,6 +22,7 @@ import services.fedEx.service.client.FedExServiceCaller;
  */
 public class Broker implements BrokerIF {
     TrackingStatusController tsc = new TrackingStatusController();
+    TrackingInformationController tic = new TrackingInformationController();
     /**
      * Make web service calls here.
      * @param information 
@@ -28,6 +30,11 @@ public class Broker implements BrokerIF {
      */
     @Override
     public void route(TrackingInformation information) {
+        try {
+            tic.insertTrackingInfo(information);
+        } catch (SQLException ex) {
+            System.out.println("tracking information failed");
+        }
         switch (information.getCarrier()){
             case FedEx:
                 //make sure the class "TrackWebPublisher" in the "src.services.fedex.service.endpoint" 
@@ -42,9 +49,10 @@ public class Broker implements BrokerIF {
                 
                 for(TrackingStatus ts : al_ts){
                     try {
+                        ts.setTrackingInformationId(information.getId());
                         tsc.insertTrackingStatus(ts);
                     } catch (SQLException ex) {
-                        Logger.getLogger(Broker.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("tracking status failed");
                     }
                 }
                 // Call FedEx service
