@@ -30,11 +30,11 @@ public class Broker implements BrokerIF {
      */
     @Override
     public void route(TrackingInformation information) {
-        try {
-            tic.insertTrackingInfo(information);
-        } catch (SQLException ex) {
-            System.out.println("tracking information failed");
-        }
+//        try {
+//            tic.insertTrackingInfo(information);
+//        } catch (SQLException ex) {
+//            System.out.println("tracking information failed");
+//        }
         switch (information.getCarrier()){
             case FedEx:
                 //make sure the class "TrackWebPublisher" in the "src.services.fedex.service.endpoint" 
