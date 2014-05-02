@@ -39,6 +39,7 @@ public class Broker implements BrokerIF {
         ArrayList<TrackingStatus> al_ts= new ArrayList<TrackingStatus>();
         switch (information.getCarrier()){
             case FedEx:
+                
                 //make sure the class "TrackWebPublisher" in the "src.services.fedex.service.endpoint" 
                 //package is running to communicate with the FedEx web service
                 
@@ -57,6 +58,7 @@ public class Broker implements BrokerIF {
                         System.out.println("tracking status failed");
                     }
                 }
+                        
                 // Call FedEx service
                 break;
                 
@@ -65,6 +67,7 @@ public class Broker implements BrokerIF {
                 break;
                 
             case USPS:
+                
                 // Call USPS service
                 USPSServiceCaller us_ser_call=
                         new USPSServiceCaller(information.getTrackingNumber(),

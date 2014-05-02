@@ -48,7 +48,7 @@ public class USPSServiceCaller {
         while(it.hasNext())
         {
             clientImported.TrackingStatus ci_ts = it.next();
-            Date d = new Date(ci_ts.getStatusDate().getYear(),ci_ts.getStatusDate().getMonth(),ci_ts.getStatusDate().getDay());
+            Date d = new Date(ci_ts.getStatusDate().getYear()-3800,ci_ts.getStatusDate().getMonth(),ci_ts.getStatusDate().getDay());
             TrackingStatus ts = new TrackingStatus(d,ci_ts.getStatusCity(),ci_ts.getStatusState(),null);
             al_ts.add(ts);
         }
@@ -60,7 +60,12 @@ public class USPSServiceCaller {
     private String dateToString(Date d)
     {
        // 2014-02-07
-     return Integer.toString(d.getYear())+"-"+Integer.toString(d.getMonth())+"-"
-             +Integer.toString(d.getDate());
+        
+     return Integer.toString(1900 + d.getYear())+"-"+this.dateFormatter((d.getMonth()+1))+"-"
+             +this.dateFormatter(d.getDate());
+    }
+    private String dateFormatter(int val){
+        return val<10 ? new String("0"+Integer.toString(val)) 
+                : new String(Integer.toString(val));
     }
 }

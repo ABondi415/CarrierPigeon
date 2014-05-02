@@ -46,7 +46,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class USPSTrackingServiceSOAP {
 
     private String endpoint = "http://production.shippingapis.com/ShippingAPITest.dll?API=TrackV2&XML=";
-    private ArrayList<TrackingStatus> al_ts = new ArrayList();
+   
     private HashMap<String,Integer> months=new HashMap() {};
     private String[] month_names={"January","February","March","April","May","June","July","August","September","November","December"};
     /**
@@ -61,6 +61,7 @@ public class USPSTrackingServiceSOAP {
     @WebMethod
     public ArrayList<TrackingStatus> getTrackingInfo(String trackingNum, String zipCode, String mailingDate) {
         //before doing anything, fill the Map object with month information
+        ArrayList<TrackingStatus> al_ts = new ArrayList();
         int month_counter = 1;
         for(String month: month_names)
         {
@@ -86,7 +87,7 @@ public class USPSTrackingServiceSOAP {
 //            conn.connect();
 //            print_and_parse(conn, true);
             System.out.println(url_string);
-            this.storeInformation(url_string);
+            this.storeInformation(url_string, al_ts);
             
             return al_ts;
 
@@ -109,7 +110,7 @@ public class USPSTrackingServiceSOAP {
 //        return dom4jDocument;
 //    }
 
-    public void storeInformation(String url) {
+    public void storeInformation(String url, ArrayList<TrackingStatus> al_ts) {
         Request request = new Request();
         request.setResourceRef(url);
 
@@ -123,7 +124,7 @@ public class USPSTrackingServiceSOAP {
         response = get_response(c, request);
         
         try {
-            dump(response);
+            dump(response, al_ts);
         } catch (IOException ex) {
             System.out.println("OH NO SHIT HAPPENED");
         }
@@ -133,7 +134,7 @@ public class USPSTrackingServiceSOAP {
         return client.handle(request);
     }
 
-    private void dump(Response response) throws IOException {
+    private void dump(Response response, ArrayList<TrackingStatus> al_ts) throws IOException {
         try {
             if (response.getStatus().isSuccess()) {
                 //response.getEntity().write(System.out);
