@@ -13,10 +13,12 @@
     BrokerIF broker = new Broker();
     String carrier = request.getParameter("carrier");
     String trackingNumber = request.getParameter("TrackingNumber");
+    String trackingNumber = "584007099279";
     String zipCode = request.getParameter("DestZipCode");
     Date mailingDate = Date.valueOf(request.getParameter("MailingDate"));
     String username = request.getParameter("Username");
-    int userId = controller.getUserIdByName(username);
+    //int userId = controller.getUserIdByName(username);
+    int userId=controller.getUserIdByName("test");
     TrackingInformation trackingInfo = new TrackingInformation(trackingNumber, CarrierTypeHelper.StringToCarrierType(carrier));
     trackingInfo.setDestZipCode(zipCode);
     trackingInfo.setMailingDate(mailingDate);

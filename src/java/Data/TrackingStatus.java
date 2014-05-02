@@ -28,7 +28,7 @@ public class TrackingStatus {
     public TrackingStatus() {
         
     }
-    
+        
     public TrackingStatus(Date statusDate, String city, String state, Time time){
         _statusDate = statusDate;
         _statusCity = city;
