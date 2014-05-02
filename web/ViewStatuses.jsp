@@ -1,3 +1,5 @@
+<%@page import="Data.TrackingStatus"%>
+<%@page import="Data.TrackingStatusController"%>
 <%@page import="helpers.CarrierTypeHelper"%>
 <%@page import="Data.TrackingInformation"%>
 <%@page import="Data.UserController"%>
@@ -5,10 +7,12 @@
 <%@page import="Data.TrackingInformationController"%>
 <% 
     String username = request.getParameter("Username"); 
-    UserController userController = new UserController();
-    int userId = userController.getUserIdByName(username);
+    String trackingNumber = request.getParameter("TrackingNumber");
+    
     TrackingInformationController infoController = new TrackingInformationController();
-    List<TrackingInformation> trackingInformation = infoController.getTrackingInfoByLoginUser(userId);
+    TrackingStatusController statusController = new TrackingStatusController();
+    TrackingInformation associatedInfo = infoController.getTrackingInfoByTrackingNumber(trackingNumber);
+    List<TrackingStatus> statuses = statusController.getTrackingStatusByTrackingInfoId(associatedInfo.getId());
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -38,6 +42,7 @@
                                     <ul id="menu">
                                         <li><a href=<%= "index.jsp?Username=" + username %>>Home</a></li>
                                         <li><a href=<%= "NewPackage.jsp?Username=" + username %>>New Package</a></li>
+                                        <li><a href=<%= "ViewPackages.jsp?Username=" + username %>>View Packages</a></li>
                                         <li><a href="Logout.jsp">Logout</a></li>
                                     </ul>
                                 </nav>
@@ -48,32 +53,30 @@
             <div id="content">
                 <div class="inner">
                     <div class="center">
-                        <h2>Packages</h2>
-                        <table id="table" class="transactions">
+                        <h2>Package Status</h2>
+                        <table id="table">
                             <thead>
                                 <tr>
-                                    <th>Tracking Number</th>
-                                    <th>Carrier</th>
-                                    <th>Destination Zip Code</th>
-                                    <th>Mailing Date</th>
+                                    <th>Date</th>
+                                    <th>City</th>
+                                    <th>State</th>
                                 </tr>
                             </thead>
                             <tbody class="scroll">
-                                <% for (int i = 0; i < trackingInformation.size(); i++){ 
-                                    TrackingInformation currentInfo = trackingInformation.get(i);
+                                <% for (int i = 0; i < statuses.size(); i++){ 
+                                    TrackingStatus currentStatus = statuses.get(i);
                                 %>
                                 <tr>
-                                    <td><%= currentInfo.getTrackingNumber() %></td>
-                                    <td><%= CarrierTypeHelper.CarrierTypeToString(currentInfo.getCarrier()) %></td>
-                                    <td><%= currentInfo.getDestZipCode() %></td>
-                                    <td><%= currentInfo.getMailingDate().toString() %></td>
+                                    <td><%= currentStatus.getStatusDate().toString() %></td>
+                                    <td><%= currentStatus.getStatusCity() %></td>
+                                    <td><%= currentStatus.getStatusState() %></td>
                                 </tr>
                                 <% }%>
                             </tbody>
                         </table>
-                        <form action="ViewStatuses.jsp" method="post">
+                        <form action="ViewPackages.jsp" method="get" style="padding-left: 15%;">
                             <input type="hidden" name="Username" value="<%= username %>"/>
-                            <input type="hidden" name="TrackingNumber"/>
+                            <input type="submit" value="Return to Packages"/>
                         </form>
                     </div>
                 </div>
@@ -84,6 +87,6 @@
                 </div>
             </div>
         </div>
-        <script src="js/PackageTable.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>

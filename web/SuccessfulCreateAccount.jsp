@@ -1,3 +1,4 @@
+<% String username = request.getParameter("Username"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -5,7 +6,7 @@
         <title>Carrier Pigeon</title>
         <link rel="stylesheet" type="text/css" href="/CarrierPigeon/css/main.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script type="text/javascript" src="js/vendor/jquery-1.11.0.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery/jquery.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -24,10 +25,11 @@
             </div>
             <div id="content">
                 <div class="inner">
-                    <div class="login">
+                    <div class="center">
                         <h2>Account Creation Successful!</h2>
                         <p>Your account has been created!  Please select Enter below to begin tracking!</p>
                         <form action="index.jsp" method="post">
+                            <input type="hidden" value="<%= username %>"
                             <input type="submit" value="Enter" />
                         </form>
                     </div>

@@ -5,7 +5,7 @@
         <title>Carrier Pigeon</title>
         <link rel="stylesheet" type="text/css" href="/CarrierPigeon/css/main.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script type="text/javascript" src="js/vendor/jquery-1.11.0.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery/jquery.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -25,7 +25,7 @@
             </div>
             <div id="content">
                 <div class="inner">
-                    <div class="login">
+                    <div class="center">
                         <h2>Thank you!</h2>
                         <p>Please login again to continue!</p>
                         <form action="Login.jsp" method="get">
@@ -40,6 +40,6 @@
                 </div>
             </div>
         </div>
-        <script src="js/index.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>

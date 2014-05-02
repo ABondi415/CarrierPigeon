@@ -24,7 +24,7 @@
             </div>
             <div id="content">
                 <div class="inner">
-                    <div class="login">
+                    <div class="center">
                         <h2>Account Creation Error!</h2>
                         <p>The username you specified already exists!  Please please click Back to try again.</p>
                         <form action="CreateAccount.jsp" method="post">

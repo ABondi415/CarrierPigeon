@@ -10,9 +10,9 @@
 
 <%
     UserController controller = new UserController();
-    TrackingInformationController tiController = new TrackingInformationController();
+    BrokerIF broker = new Broker();
     String carrier = request.getParameter("carrier");
-    String trackingNumber = request.getParameter("Tracking Number");
+    String trackingNumber = request.getParameter("TrackingNumber");
     String zipCode = request.getParameter("DestZipCode");
     Date mailingDate = Date.valueOf(request.getParameter("MailingDate"));
     String username = request.getParameter("Username");
@@ -21,8 +21,6 @@
     trackingInfo.setDestZipCode(zipCode);
     trackingInfo.setMailingDate(mailingDate);
     trackingInfo.setUserId(userId);
-    tiController.insertTrackingInfo(trackingInfo);
-    BrokerIF broker = new Broker();
     broker.route(trackingInfo);
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -30,7 +28,7 @@
         <title>Carrier Pigeon</title>
         <link rel="stylesheet" type="text/css" href="/CarrierPigeon/css/main.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script type="text/javascript" src="js/vendor/jquery-1.11.0.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery/jquery.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -42,14 +40,23 @@
                                 <img src="/CarrierPigeon/img/logo.jpg" alt='logo'/>
                             </td>
                             <td>
-                                <h1><a href="index.jsp">Carrier Pigeon</a></h1>
+                                <h1><a href=<%= "index.jsp?Username=" + username %>>Carrier Pigeon</a></h1>
+                            </td>
+                            <td>
+                                <nav>
+                                    <ul id="menu">
+                                        <li><a href=<%= "index.jsp?Username=" + username %>>Home</a></li>
+                                        <li><a href=<%= "ViewPackages.jsp?Username=" + username %>>View Packages</a></li>
+                                        <li><a href="Logout.jsp">Logout</a></li>
+                                    </ul>
+                                </nav>
                             </td>
                         </tr>
                 </table>
             </div>
             <div id="content">
                 <div class="inner">
-                    <div class="login">
+                    <div class="center">
                         <h2>New Package Added!</h2>
                         <ul>
                             <li>
@@ -67,7 +74,8 @@
                             </li>
                         </ul>
                         <div id="submit_button">
-                            <form action="index.jsp">
+                            <form action="index.jsp" method="get">
+                                <input type="hidden" name="Username" value="<%= username %>"/>
                                 <input type="submit" value="Done"/>
                             </form>
                         </div>

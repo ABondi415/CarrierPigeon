@@ -5,7 +5,7 @@
         <title>Carrier Pigeon</title>
         <link rel="stylesheet" type="text/css" href="/CarrierPigeon/css/main.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script type="text/javascript" src="js/vendor/jquery-1.11.0.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery/jquery.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -24,7 +24,7 @@
             </div>
             <div id="content">
                 <div class="inner">
-                    <div class="login">
+                    <div class="center">
                         <h2>Invalid Login!</h2>
                         <p>The username and password you entered were invalid.  Please try to login again.</p>
                         <form action="Login.jsp" method="post">

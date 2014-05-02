@@ -4,13 +4,10 @@
  * and open the template in the editor.
  */
 
-// This function is used for the submission of forms with two submit inputs.
-//  It allows us to determine which submit was selected.
 $(document).ready(function(){
-    $(":submit").click(function(){
-        $("#action").val(this.name);
+    $("tr").click(function(){
+        var trackingNumber = $(this).children().html();
+        $("input[name=TrackingNumber]").val(trackingNumber);
+        $("form").submit();
     });
 });
-
-
-

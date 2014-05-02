@@ -3,6 +3,7 @@
 <%@page import="Data.UserController"%>
 <%
     String action = request.getParameter("action");
+    String username = request.getParameter("Username");
     UserController controller = new UserController();
     List<User> users = controller.getUsers();
     boolean existingUser = false;
@@ -25,7 +26,7 @@
                 newUser.setEmail(request.getParameter("Email"));
                 controller.insertUser(newUser);
                 response.setStatus(response.SC_MOVED_TEMPORARILY);
-                response.setHeader("Location", "http://localhost:8080/CarrierPigeon/SuccessfulCreateAccount.jsp");
+                response.setHeader("Location", "http://localhost:8080/CarrierPigeon/SuccessfulCreateAccount.jsp?Username=" + username);
             }
             else {
                 response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -41,7 +42,7 @@
         }
         if (existingUser){
             response.setStatus(response.SC_MOVED_TEMPORARILY);
-            response.setHeader("Location", "http://localhost:8080/CarrierPigeon/index.jsp");
+            response.setHeader("Location", "http://localhost:8080/CarrierPigeon/index.jsp?Username=" + username);
         }
         else {
             response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -62,7 +63,7 @@
         <title>Carrier Pigeon</title>
         <link rel="stylesheet" type="text/css" href="/CarrierPigeon/css/main.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script type="text/javascript" src="js/vendor/jquery-1.11.0.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery/jquery.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -81,7 +82,7 @@
             </div>
             <div id="content">
                 <div class="inner">
-                    <div class="login">
+                    <div class="center">
                         <h2>Create Account</h2>
                         <p>Please enter your account information below: </p>
                         <form action="CreateAccount.jsp" method="post">

@@ -5,7 +5,7 @@
         <title>Carrier Pigeon</title>
         <link rel="stylesheet" type="text/css" href="/CarrierPigeon/css/main.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script type="text/javascript" src="js/vendor/jquery-1.11.0.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery/jquery.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -24,7 +24,7 @@
             </div>
             <div id="content">
                 <div class="inner">
-                    <div class="login">
+                    <div class="center">
                         <h2>Welcome!</h2>
                         <p>Carrier pigeon is a composition of Web Services created to make the tracking of multiple packages easier.</p>
                         <p>If you have an account, you may login below.  Otherwise, select <b>Create an Account</b> and begin tracking in just a few minutes!</p>
