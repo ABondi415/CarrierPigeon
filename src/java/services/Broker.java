@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import services.fedEx.service.client.FedExServiceCaller;
+import services.usps.service.client.USPSServiceCaller;
 
 /**
  *
@@ -30,11 +31,7 @@ public class Broker implements BrokerIF {
      */
     @Override
     public void route(TrackingInformation information) {
-//        try {
-//            tic.insertTrackingInfo(information);
-//        } catch (SQLException ex) {
-//            System.out.println("tracking information failed");
-//        }
+        ArrayList<TrackingStatus> al_ts= new ArrayList<TrackingStatus>();
         switch (information.getCarrier()){
             case FedEx:
                 //make sure the class "TrackWebPublisher" in the "src.services.fedex.service.endpoint" 
@@ -44,7 +41,7 @@ public class Broker implements BrokerIF {
                 fsc.setup_and_test();
                 //call the FedEx tracking web service and fill an ArrayList of the tracking statuses
                 
-                ArrayList<TrackingStatus> al_ts = fsc.getTrackingStatus();
+                al_ts = fsc.getTrackingStatus();
                 //get all the tracking statuses
                 
                 for(TrackingStatus ts : al_ts){
@@ -64,6 +61,21 @@ public class Broker implements BrokerIF {
                 
             case USPS:
                 // Call USPS service
+                USPSServiceCaller us_ser_call=
+                        new USPSServiceCaller(information.getTrackingNumber(),
+                                        information.getDestZipCode(),
+                                        information.getMailingDate());
+                
+                al_ts=us_ser_call.getTrackingInformation();
+                for(TrackingStatus ts : al_ts){
+                    try {
+                        ts.setTrackingInformationId(information.getId());
+                        tsc.insertTrackingStatus(ts);
+                    } catch (SQLException ex) {
+                        System.out.println("tracking status failed");
+                    }
+                }
+                
                 break;
             
             default:
