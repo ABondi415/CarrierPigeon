@@ -12,7 +12,11 @@
     UserController controller = new UserController();
     BrokerIF broker = new Broker();
     String carrier = request.getParameter("carrier");
+<<<<<<< HEAD
     String trackingNumber = request.getParameter("TrackingNumber");
+=======
+    //String trackingNumber = request.getParameter("Tracking Number");
+>>>>>>> ec375517e43fa79288e128471a9e47090f4e258a
     String trackingNumber = "584007099279";
     String zipCode = request.getParameter("DestZipCode");
     Date mailingDate = Date.valueOf(request.getParameter("MailingDate"));
