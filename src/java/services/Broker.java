@@ -31,6 +31,11 @@ public class Broker implements BrokerIF {
      */
     @Override
     public void route(TrackingInformation information) {
+        try {
+            tic.insertTrackingInfo(information);
+        } catch (SQLException ex) {
+            System.out.println("tracking information failed");
+        }
         ArrayList<TrackingStatus> al_ts= new ArrayList<TrackingStatus>();
         switch (information.getCarrier()){
             case FedEx:
