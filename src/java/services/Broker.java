@@ -10,8 +10,15 @@ import Data.TrackingInformation;
 import Data.TrackingInformationController;
 import Data.TrackingStatus;
 import Data.TrackingStatusController;
+import UPS.UPSClient;
+import com.ups.xmlschema.xoltws.track.v2.ActivityLocationType;
+import com.ups.xmlschema.xoltws.track.v2.ActivityType;
+import com.ups.xmlschema.xoltws.track.v2.PackageType;
+import com.ups.xmlschema.xoltws.track.v2.ShipmentType;
+import com.ups.xmlschema.xoltws.track.v2.TrackResponse;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import services.fedEx.service.client.FedExServiceCaller;
@@ -64,6 +71,20 @@ public class Broker implements BrokerIF {
                 
             case UPS:
                 // Call UPS service
+                  TrackResponse myResponse = UPSClient.getUPSTrackResponse(information.getTrackingNumber());
+                  List<ShipmentType> shipList = myResponse.getShipment();
+                  List<PackageType> packages = shipList.get(0).getPackage();
+                  List<ActivityType> activityLocations = packages.get(0).getActivity();
+                  ActivityLocationType lastAddress = activityLocations.get(0).getActivityLocation();
+                    
+                  //lastAddress is the address data for the last known tracking info
+                  //You can make calls such as:
+                  lastAddress.getAddress().getAddressLine();
+                  lastAddress.getAddress().getCity();
+                  //etc.
+                  
+                  
+                  
                 break;
                 
             case USPS:

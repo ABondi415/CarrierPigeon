@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Track.wsdl" uri="src/conf/xml-resources/web-service-references/Track/wsdl/Track.wsdl"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/UPSSecurity.xsd" uri="src/conf/xml-resources/web-service-references/Track/wsdl/UPSSecurity.xsd"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Error1.1.xsd" uri="src/conf/xml-resources/web-service-references/Track/wsdl/Error1.1.xsd"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/TrackWebServiceSchema.xsd" uri="src/conf/xml-resources/web-service-references/Track/wsdl/TrackWebServiceSchema.xsd"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/common.xsd" uri="src/conf/xml-resources/web-service-references/Track/wsdl/common.xsd"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Track.wsdl" uri="src/conf/xml-resources/web-service-references/Track_1/wsdl/Track.wsdl"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/UPSSecurity.xsd" uri="src/conf/xml-resources/web-service-references/Track_1/wsdl/UPSSecurity.xsd"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Error1.1.xsd" uri="src/conf/xml-resources/web-service-references/Track_1/wsdl/Error1.1.xsd"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/TrackWebServiceSchema.xsd" uri="src/conf/xml-resources/web-service-references/Track_1/wsdl/TrackWebServiceSchema.xsd"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/common.xsd" uri="src/conf/xml-resources/web-service-references/Track_1/wsdl/common.xsd"/>
+</catalog>
