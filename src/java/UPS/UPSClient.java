@@ -81,7 +81,7 @@ public class UPSClient {
          	TrackResponse trackResponse = trackPortType.processTrack(populateTrackRequest(trackingNumber), populateUPSSecurity());            
             statusCode = trackResponse.getResponse().getResponseStatus().getCode();
             description = trackResponse.getResponse().getResponseStatus().getDescription();
-            updateResultsToFile(statusCode, description);
+//            updateResultsToFile(statusCode, description);
            
             return trackResponse;
             
