@@ -8,11 +8,25 @@ package services.fedEx.service.client;
 
 import Data.TrackingStatus;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.security.SecureRandom;
+import java.security.cert.Certificate;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import javax.xml.namespace.QName;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -38,7 +52,8 @@ import resolver.NSResolver;
 public class FedExServiceCaller {
     String trkNum;
     ArrayList<TrackingStatus> al_ts;
-    
+    private static final String url_s = "https://localhost:9876/fib";
+
     public FedExServiceCaller(String trkNum){
         this.trkNum=trkNum;
         this.al_ts=new ArrayList<>();
@@ -46,33 +61,86 @@ public class FedExServiceCaller {
        
     }
     
-    public void setup_and_test() {
-        // Create identifying names for service and port.
-        URI ns_URI = null;
-        try {
-            ns_URI = new URI("urn:fib");
+//    public void setup_and_test() {
+//        // Create identifying names for service and port.
+//        URI ns_URI = null;
+//        try {
+//            ns_URI = new URI("urn:fib");
+//        }
+//        catch(URISyntaxException e) { System.err.println(e); }
+//
+//        QName service_name = new QName("rcService", ns_URI.toString());
+//        QName port = new QName("rcPort", ns_URI.toString());
+//        String endpoint = "http://localhost:8888/rc";
+//
+//        // Now create a service proxy or dispatcher.
+//        Service service = Service.create(service_name);
+//        service.addPort(port, HTTPBinding.HTTP_BINDING, endpoint);
+//        Dispatch<Source> dispatch =
+//            service.createDispatch(port, Source.class, Service.Mode.PAYLOAD);
+//
+//        // Send some requests.
+//        String xml_start = "<fib:request xmlns:fib = 'urn:fib'>";
+//        String xml_end = "</fib:request>";
+//
+//        String xml = xml_start+this.trkNum+xml_end;
+//        // GET request to test whether the POST worked.
+//        invoke(dispatch, "POST", ns_URI.toString(), xml);
+//
+//    }
+    public void getTrackingInformation(){
+    try {
+            // Create a context that doesn't check certificates.
+            SSLContext ssl_ctx = SSLContext.getInstance("TLS");
+            TrustManager[] trust_mgr = get_trust_mgr();
+            ssl_ctx.init(null, // key manager
+                    trust_mgr, // trust manager
+                    new SecureRandom()); // random number generator
+            HttpsURLConnection.setDefaultSSLSocketFactory(ssl_ctx.getSocketFactory());
+
+            URL url = new URL(url_s);
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            // Guard against "bad hostname" errors during handshake.
+            conn.setHostnameVerifier(new HostnameVerifier() {
+
+                public boolean verify(String host, SSLSession session) {
+                    return true;
+                }
+            });
+
+            //test request
+//            List<Integer> nums = new ArrayList<Integer>();
+//            nums.add(3); nums.add(5); nums.add(7);
+
+
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+//            conn.setRequestMethod("GET");
+            conn.setRequestMethod("POST");
+            conn.connect();
+            OutputStream out = conn.getOutputStream();
+            out.write(new String(" "+this.trkNum).getBytes());
+            out.flush();
+            out.close();
+            byte[] buffer = new byte[4096];
+            InputStream in = conn.getInputStream();
+            in.read(buffer);
+            
+            String response = new String(buffer);
+            this.generateTrackingInformation(response);
+//            dump_features(conn);
+            conn.disconnect();
+
+        } catch (MalformedURLException e) {
+            System.err.println(e);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println(e);
         }
-        catch(URISyntaxException e) { System.err.println(e); }
-
-        QName service_name = new QName("rcService", ns_URI.toString());
-        QName port = new QName("rcPort", ns_URI.toString());
-        String endpoint = "http://localhost:8888/rc";
-
-        // Now create a service proxy or dispatcher.
-        Service service = Service.create(service_name);
-        service.addPort(port, HTTPBinding.HTTP_BINDING, endpoint);
-        Dispatch<Source> dispatch =
-            service.createDispatch(port, Source.class, Service.Mode.PAYLOAD);
-
-        // Send some requests.
-        String xml_start = "<fib:request xmlns:fib = 'urn:fib'>";
-        String xml_end = "</fib:request>";
-
-        String xml = xml_start+this.trkNum+xml_end;
-        // GET request to test whether the POST worked.
-        invoke(dispatch, "POST", ns_URI.toString(), xml);
-
     }
+
 
     private void invoke(Dispatch<Source> dispatch,
                         String verb,
@@ -133,5 +201,48 @@ public class FedExServiceCaller {
     
     public ArrayList<TrackingStatus> getTrackingStatus(){
         return this.al_ts;
+    }
+    
+    
+    private TrustManager[] get_trust_mgr() {
+        // No exceptions thrown in any of the overridden methods.
+        TrustManager[] certs = new TrustManager[]{
+            new X509TrustManager() {
+
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                public void checkClientTrusted(X509Certificate[] certs,
+                        String type) {
+                }
+
+                public void checkServerTrusted(X509Certificate[] certs,
+                        String type) {
+                }
+            }
+        };
+        return certs;
+    }
+
+    private void dump_features(HttpsURLConnection conn) {
+        try {
+            print("Status code:  " + conn.getResponseCode());
+            print("Cipher suite: " + conn.getCipherSuite());
+            Certificate[] certs = conn.getServerCertificates();
+            for (Certificate cert : certs) {
+                print("\tCert. type: " + cert.getType());
+                print("\tHash code:  " + cert.hashCode());
+                print("\tAlgorithm:  " + cert.getPublicKey().getAlgorithm());
+                print("\tFormat:     " + cert.getPublicKey().getFormat());
+                print("");
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+    private void print(String s) {
+        System.out.println(s);
     }
 }

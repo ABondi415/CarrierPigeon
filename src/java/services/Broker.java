@@ -52,7 +52,7 @@ public class Broker implements BrokerIF {
                 //package is running to communicate with the FedEx web service
                 
                 FedExServiceCaller fsc = new FedExServiceCaller(information.getTrackingNumber());
-                fsc.setup_and_test();
+                fsc.getTrackingInformation();
                 //call the FedEx tracking web service and fill an ArrayList of the tracking statuses
                 
                 al_ts = fsc.getTrackingStatus();
