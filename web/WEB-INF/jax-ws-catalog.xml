@@ -5,4 +5,9 @@
     <system systemId="file:/C:/Users/Eric%20Komorek/Documents/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Error1.1.xsd" uri="wsdl/Error1.1.xsd"/>
     <system systemId="file:/C:/Users/Eric%20Komorek/Documents/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/TrackWebServiceSchema.xsd" uri="wsdl/TrackWebServiceSchema.xsd"/>
     <system systemId="file:/C:/Users/Eric%20Komorek/Documents/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/common.xsd" uri="wsdl/common.xsd"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Track.wsdl" uri="wsdl/Track.wsdl"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/UPSSecurity.xsd" uri="wsdl/UPSSecurity.xsd"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Error1.1.xsd" uri="wsdl/Error1.1.xsd"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/TrackWebServiceSchema.xsd" uri="wsdl/TrackWebServiceSchema.xsd"/>
+    <system systemId="file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/common.xsd" uri="wsdl/common.xsd"/>
 </catalog>

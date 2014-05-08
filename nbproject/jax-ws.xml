@@ -7,43 +7,6 @@
   </services>
   <clients>
     <client name="Track">
-      <wsdl-url>file:/C:/Users/Eric%20Komorek/Documents/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Track.wsdl</wsdl-url>
-      <local-wsdl-file>Track.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">UPSServiceClient</package-name>
-      <catalog-file>catalog.xml</catalog-file>
-      <use-dispatch>true</use-dispatch>
-      <wsimport-options>
-        <wsimport-option>
-          <wsimport-option-name>extension</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>verbose</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>fork</wsimport-option-name>
-          <wsimport-option-value>false</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>file:/C:/Users/Eric%20Komorek/Documents/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Track.wsdl</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xnocompile</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xendorsed</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>UPSServiceClient</wsimport-option-value>
-        </wsimport-option>
-      </wsimport-options>
-    </client>
-    <client name="Track_1">
       <wsdl-url>file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Track.wsdl</wsdl-url>
       <local-wsdl-file>Track.wsdl</local-wsdl-file>
       <package-name>com.ups.wsdl.xoltws.track.v2.0</package-name>
