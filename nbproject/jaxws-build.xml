@@ -45,7 +45,7 @@
     </target>
     <target name="wsimport-client-Track" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/Track"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Track" destdir="${build.generated.dir}/jax-wsCache/Track" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Track/wsdl/Track.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="file:/C:/Users/Eric%20Komorek/Documents/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Track.wsdl" xnocompile="true" xendorsed="true" package="UPSServiceClient">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Track" destdir="${build.generated.dir}/jax-wsCache/Track" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Track/wsdl/Track.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="file:/./UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Track.wsdl" xnocompile="true" xendorsed="true">
             <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/Track/wsdl/Track.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/Track"/>
         </wsimport>
@@ -56,24 +56,8 @@
         </copy>
     </target>
     <target name="wsimport-client-clean-Track" depends="-init-project">
-        <delete dir="${build.generated.sources.dir}/jax-ws/UPSServiceClient"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/com/ups/wsdl/xoltws/track/v2/0"/>
         <delete dir="${build.generated.dir}/jax-wsCache/Track"/>
     </target>
-    <target name="wsimport-client-Track_1" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/Track_1"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Track_1" destdir="${build.generated.dir}/jax-wsCache/Track_1" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Track_1/wsdl/Track.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="file:/C:/Users/Eric%20Komorek/Documents/CarrierPigeon/UPSTrackingAPI/TrackingPACKAGE/TRACKINGWebServices/SCHEMAS-WSDLs/Track.wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/Track_1/wsdl/Track.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/Track_1"/>
-        </wsimport>
-        <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/Track_1">
-                <include name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="wsimport-client-clean-Track_1" depends="-init-project">
-        <delete dir="${build.generated.sources.dir}/jax-ws/com/ups/wsdl/xoltws/track/v2/0"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/Track_1"/>
-    </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-Track, wsimport-client-Track_1"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-Track"/>
 </project>
